@@ -1,0 +1,46 @@
+@startuml
+class Client
+
+interface GraphicalFactory {
+    + createGraphic() : Graphic
+}
+
+class CircleFactory {
+    + createGraphic() : Graphic
+}
+
+class TriangleFactory {
+    + createGraphic() : Graphic
+}
+
+class RectangleFactory {
+    + createGraphic() : Graphic
+}
+
+class Graphic {
+    + init() : void
+    + setColor() : void
+    + fill() : void
+    + setSize() : void
+    + display() : void
+}
+
+class Circle
+class Triangle
+class Rectangle
+
+Circle -up-|> Graphic
+Triangle -up-|> Graphic
+Rectangle -up-|> Graphic
+
+CircleFactory .up.|> GraphicalFactory
+TriangleFactory .up.|> GraphicalFactory
+RectangleFactory .up.|> GraphicalFactory
+
+Client .down.> Graphic
+Client .down.> GraphicalFactory
+
+CircleFactory .right.> Circle
+TriangleFactory .right.> Triangle
+RectangleFactory .right.> Rectangle
+@enduml
