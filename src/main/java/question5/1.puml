@@ -1,0 +1,64 @@
+@startuml
+
+abstract class SceneFactory {
+    +createMap(): Map
+    +createWeather(): Weather
+    +createSound(): Sound
+}
+
+class SnowSceneFactory extends SceneFactory {
+    +createMap(): Map
+    +createWeather(): Weather
+    +createSound(): Sound
+}
+
+class DesertSceneFactory extends SceneFactory {
+    +createMap(): Map
+    +createWeather(): Weather
+    +createSound(): Sound
+}
+
+abstract class Map {
+    +show(): void
+}
+
+class SnowMap extends Map {
+    +show(): void
+}
+
+class DesertMap extends Map {
+    +show(): void
+}
+
+abstract class Weather {
+    +display(): void
+}
+
+class SnowWeather extends Weather {
+    +display(): void
+}
+
+class DesertWeather extends Weather {
+    +display(): void
+}
+
+abstract class Sound {
+    +play(): void
+}
+
+class SnowSound extends Sound {
+    +play(): void
+}
+
+class DesertSound extends Sound {
+    +play(): void
+}
+
+SnowSceneFactory ..> Map
+SnowSceneFactory ..> Weather
+SnowSceneFactory ..> Sound
+DesertSceneFactory ..> Map
+DesertSceneFactory ..> Weather
+DesertSceneFactory ..> Sound
+
+@enduml

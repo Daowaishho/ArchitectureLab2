@@ -1,0 +1,25 @@
+@startuml
+
+abstract class Encryptor {
+    -algorithm: str
+    +encrypt(text: str): void
+    +static getInstance(algorithm: str): Encryptor
+}
+
+class DES extends Encryptor {
+    +encrypt(text: str): void
+}
+
+class DESede extends Encryptor {
+    +encrypt(text: str): void
+}
+
+class MD5 extends Encryptor {
+    +encrypt(text: str): void
+}
+
+Encryptor ..> DES
+Encryptor ..> DESede
+Encryptor ..> MD5
+
+@enduml

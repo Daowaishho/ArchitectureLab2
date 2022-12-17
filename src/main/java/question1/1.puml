@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Employee {
+    - id        : String
+    - name      : String
+    - age       : Integer
+    - gender    : String
+    - salary    : Double
+}
+
+class SalaryDisplay {
+    + displaySalary(Employee employee) : void
+}
+
+class FullTimeEmployee {
+    - leaveDaysPerMonth() : Integer
+    + calculateSalaryByDays(): Double
+}
+
+class PartTimeEmployee {
+    - workHoursPerMonth : Integer
+    + calculateSalaryByDays(): Double
+}
+
+PartTimeEmployee -up-|> Employee
+FullTimeEmployee -up-|> Employee
+SalaryDisplay ..> Employee
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.17
+end note
+
+@enduml

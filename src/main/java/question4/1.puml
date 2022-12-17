@@ -1,0 +1,33 @@
+@startuml
+
+abstract class ImageReaderFactory {
+    -format: str
+    +createImageReader(): ImageReader
+    +static getInstance(format: str): ImageReaderFactory
+}
+
+class GifReaderFactory extends ImageReaderFactory {
+    +createImageReader(): ImageReader
+}
+
+class JpgReaderFactory extends ImageReaderFactory {
+    +createImageReader(): ImageReader
+}
+
+abstract class ImageReader {
+    -format: str
+    +read(): void
+}
+
+class GifReader extends ImageReader {
+    +read(): void
+}
+
+class JpgReader extends ImageReader {
+    +read(): void
+}
+
+GifReaderFactory ..> GifReader
+JpgReaderFactory ..> JpgReader
+
+@enduml
