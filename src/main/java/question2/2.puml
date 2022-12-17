@@ -43,4 +43,10 @@ Client .down.> GraphicalFactory
 CircleFactory .right.> Circle
 TriangleFactory .right.> Triangle
 RectangleFactory .right.> Rectangle
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.17 16:19
+end note
+
 @enduml

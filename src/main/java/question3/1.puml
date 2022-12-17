@@ -1,25 +1,40 @@
 @startuml
 
 abstract class Encryptor {
-    -algorithm: str
-    +encrypt(text: str): void
-    +static getInstance(algorithm: str): Encryptor
+    + {abstract} encrypt(String str): String
 }
 
-class DES extends Encryptor {
-    +encrypt(text: str): void
+class DES {
+    + encrypt(String str): String
 }
 
-class DESede extends Encryptor {
-    +encrypt(text: str): void
+class DESede {
+    + encrypt(String str): String
 }
 
-class MD5 extends Encryptor {
-    +encrypt(text: str): void
+class MD5 {
+    + encrypt(String str): String
 }
 
-Encryptor ..> DES
-Encryptor ..> DESede
-Encryptor ..> MD5
+class EncryptorFactory {
+    + {static} getEncryptor(String type) : Encryptor
+}
+
+class XMLUtil {
+    + {static} getEncryptorType() : String
+}
+
+DES -up-|> Encryptor
+DESede -up-|> Encryptor
+MD5 -up-|> Encryptor
+
+EncryptorFactory .up.> DESede
+EncryptorFactory .up.> DES
+EncryptorFactory .up.> MD5
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.17 16:30
+end note
 
 @enduml
