@@ -1,0 +1,36 @@
+@startuml
+
+interface Serializable
+
+class Address {
+}
+
+abstract class Customer {
+    - address : Address
+    + setAddress(Address address) : void
+    + getAddress() : Address
+    + {abstract} clone() : Customer
+}
+
+class DeepCloneCustomer {
+    + clone() : Customer
+}
+
+class ShallowCloneCustomer {
+    + clone() : Customer
+}
+
+Address .left.|> Serializable
+DeepCloneCustomer .left.|> Serializable
+Customer .left.|> Serializable
+
+Customer "1" -up-> "1" Address
+DeepCloneCustomer -up-|> Customer
+ShallowCloneCustomer -up-|> Customer
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.17 21:45
+end note
+
+@enduml
