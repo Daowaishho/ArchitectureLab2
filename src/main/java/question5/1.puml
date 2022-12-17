@@ -1,64 +1,81 @@
 @startuml
 
 abstract class SceneFactory {
-    +createMap(): Map
-    +createWeather(): Weather
-    +createSound(): Sound
+    + {static} createMap(): Map
+    + {static} createWeather(): Weather
+    + {static} createSound(): Sound
 }
 
-class SnowSceneFactory extends SceneFactory {
-    +createMap(): Map
-    +createWeather(): Weather
-    +createSound(): Sound
+class SceneAFactory {
+    + {static} createMap(): Map
+    + {static} createWeather(): Weather
+    + {static} createSound(): Sound
 }
 
-class DesertSceneFactory extends SceneFactory {
-    +createMap(): Map
-    +createWeather(): Weather
-    +createSound(): Sound
+class SceneBFactory{
+    + {static} createMap(): Map
+    + {static} createWeather(): Weather
+    + {static} createSound(): Sound
 }
 
 abstract class Map {
-    +show(): void
+    + display(): void
 }
 
-class SnowMap extends Map {
-    +show(): void
+class AMap{
+    + display(): void
 }
 
-class DesertMap extends Map {
-    +show(): void
+class BMap {
+    + display(): void
 }
 
 abstract class Weather {
-    +display(): void
+    + display(): void
 }
 
-class SnowWeather extends Weather {
-    +display(): void
+class AWeather {
+    + display(): void
 }
 
-class DesertWeather extends Weather {
-    +display(): void
+class BWeather {
+    + display(): void
 }
 
 abstract class Sound {
-    +play(): void
+    + display(): void
 }
 
-class SnowSound extends Sound {
-    +play(): void
+class ASound {
+    + display(): void
 }
 
-class DesertSound extends Sound {
-    +play(): void
+class BSound {
+    + display(): void
 }
 
-SnowSceneFactory ..> Map
-SnowSceneFactory ..> Weather
-SnowSceneFactory ..> Sound
-DesertSceneFactory ..> Map
-DesertSceneFactory ..> Weather
-DesertSceneFactory ..> Sound
+AWeather -down-|> Weather
+BWeather -down-|> Weather
 
+ASound -down-|> Sound
+BSound -down-|> Sound
+
+AMap -down-|> Map
+BMap -down-|> Map
+
+SceneAFactory .down.> AWeather
+SceneAFactory .down.> ASound
+SceneAFactory .down.> AMap
+
+SceneBFactory .down.> BWeather
+SceneBFactory .down.> BSound
+SceneBFactory .down.> BMap
+
+SceneAFactory -up-|> SceneFactory
+SceneBFactory -up-|> SceneFactory
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.17 20:18
+end note
 @enduml
