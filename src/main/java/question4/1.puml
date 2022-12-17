@@ -1,33 +1,40 @@
 @startuml
-
 abstract class ImageReaderFactory {
-    -format: str
-    +createImageReader(): ImageReader
-    +static getInstance(format: str): ImageReaderFactory
+    + {static} createImageReader(): ImageReader
 }
 
-class GifReaderFactory extends ImageReaderFactory {
-    +createImageReader(): ImageReader
+class GifReaderFactory {
+    + {static} createImageReader(): ImageReader
 }
 
-class JpgReaderFactory extends ImageReaderFactory {
-    +createImageReader(): ImageReader
+class JpgReaderFactory {
+    + {static} createImageReader(): ImageReader
 }
 
 abstract class ImageReader {
-    -format: str
     +read(): void
 }
 
-class GifReader extends ImageReader {
+class GifReader {
     +read(): void
 }
 
-class JpgReader extends ImageReader {
+class JpgReader {
     +read(): void
 }
 
-GifReaderFactory ..> GifReader
-JpgReaderFactory ..> JpgReader
+GifReaderFactory -up-|> ImageReaderFactory
+JpgReaderFactory -up-|> ImageReaderFactory
+
+GifReader -up-|> ImageReader
+JpgReader -up-|> ImageReader
+
+GifReaderFactory .right.> GifReader
+JpgReaderFactory .right.> JpgReader
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.17 19:37
+end note
 
 @enduml
