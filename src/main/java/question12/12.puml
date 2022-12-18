@@ -65,4 +65,8 @@ Resources o-- Component
 
 Teacher ..> Component
 
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 17:33
+end note
 @enduml
