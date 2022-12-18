@@ -1,0 +1,31 @@
+@startuml
+
+abstract class Component {
+    + {abstract} share() : void
+    + {abstract} add(Component component) : void
+    + {abstract} remove(Component component): void
+    + {abstract} getChild(int i) : Component
+}
+
+class Member {
+    + share() : void
+}
+
+class Group {
+    - componentList : ArrayList<Component>
+    + share() : void
+    + add(Component component) : void
+    + remove(Component component): void
+    + getChild(int i) : Component
+}
+
+Member -up-|> Component
+Group -up-|> Component
+Group "1" o-- "*" Component
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 15:18
+end note
+
+@enduml
