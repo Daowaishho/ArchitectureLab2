@@ -1,0 +1,53 @@
+@startuml
+
+abstract class StatisticalAnalysis {
+    # statistics : String
+    # dataExporter : DataExporter
+    + setDateExporter(DataExporter dataExporter) : void
+    + {abstract} analysis() : void
+    + export() : void
+}
+
+class ScoreDistributionAnalysis {
+    + analysis() : void
+}
+
+class QuestionCorrectRateAnalysis {
+    + analysis() : void
+}
+
+class ExamineeScoreAnalysis {
+    + analysis() : void
+}
+
+interface DataExporter {
+    + exportData(String data) : void
+}
+
+class ExcelExporter {
+    + exportData(String data) : void
+}
+
+class WordExporter {
+    + exportData(String data) : void
+}
+
+class ImageExporter {
+    + exportData(String data) : void
+}
+
+ExcelExporter .up.|>  DataExporter
+WordExporter .up.|> DataExporter
+ImageExporter .up.|> DataExporter
+
+ScoreDistributionAnalysis -up-|> StatisticalAnalysis
+QuestionCorrectRateAnalysis -up-|> StatisticalAnalysis
+ExamineeScoreAnalysis -up-|> StatisticalAnalysis
+
+StatisticalAnalysis o-right- DataExporter
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 16:09
+end note
+@enduml
