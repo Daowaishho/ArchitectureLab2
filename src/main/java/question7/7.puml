@@ -1,0 +1,15 @@
+@startuml
+
+class VirtualUserGenerator {
+    - {static} instance : VirtualUserGenerator
+    - VirtualUserGenerator()
+    + {static} getInstance() : VirtualUserGenerator
+}
+
+VirtualUserGenerator o-- VirtualUserGenerator
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 13:53
+end note
+@enduml
