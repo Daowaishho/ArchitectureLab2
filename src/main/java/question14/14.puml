@@ -1,0 +1,80 @@
+@startuml
+
+abstract class Message {
+    - content : String
+    # sendingMethod : SendingMethod
+    + setSendingMethod(SendingMethod sendingMethod) : void
+    + getContent() : String
+    + setContent(String str) : void
+    + {abstract} sendMessage() : void
+}
+
+class CommonMessage {
+    + sendMessage() : void
+}
+
+class UrgentMessage {
+    + sendMessage() : void
+}
+
+class EmergencyMessage {
+    + sendMessage() : void
+}
+
+interface SendingMethod {
+    + {abstract} send(String str) : void
+}
+
+class ShortMessage {
+    + send(String str) : void
+}
+
+class EmailMessage {
+    - emailHandlerAdaptor : EmailHandlerAdaptor
+    + setEmailHandlerAdaptor(EmailHandlerAdaptor emailHandlerAdaptor) : void
+    + send(String str) : void
+}
+
+class EmailHandlerAdaptor {
+    + send(String str) : void
+}
+
+class EmailHandler {
+    + send(String str) : void
+}
+
+class MobileMessage {
+    - mobileMessageHandlerAdaptor : MobileMessageHandlerAdaptor
+    + setMobileMessageHandlerAdaptor(MobileMessageHandlerAdaptor mobileMessageHandlerAdaptor) : void
+    + send(String str) : void
+}
+
+class MobileMessageHandlerAdaptor {
+    + send(String str) : void
+}
+
+class MobileMessageHandler {
+    + send(String str) : void
+}
+
+CommonMessage -up-|> Message
+UrgentMessage -up-|> Message
+EmergencyMessage -up-|> Message
+
+Message o-- SendingMethod
+
+ShortMessage -up-|> SendingMethod
+
+EmailMessage -up-|> SendingMethod
+EmailMessage *-down- EmailHandlerAdaptor
+EmailHandlerAdaptor -up-|> EmailHandler
+
+MobileMessage -up-|> SendingMethod
+MobileMessage *-down- MobileMessageHandlerAdaptor
+MobileMessageHandlerAdaptor -up-|> MobileMessageHandler
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 19:35
+end note
+@enduml
