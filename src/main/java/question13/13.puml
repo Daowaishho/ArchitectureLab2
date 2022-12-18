@@ -1,0 +1,36 @@
+@startuml
+
+class Block {
+    - blockColor : Color
+    - blockArrayList : ArrayList<Block>
+    + setColor() : Color
+    + add(Block block) : void
+    + remove(Block block) : void
+    + getChild(int i) : Block
+    + dyeing() : void
+}
+
+abstract class Color {
+    + {abstract} paint() : void
+}
+
+class Blue {
+    + paint() : void
+}
+
+class Red {
+    + paint() : void
+}
+
+Block o-- Color
+Block o-- Block
+
+Blue -up-|> Color
+Red -up-|> Color
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 18:49
+end note
+
+@enduml
