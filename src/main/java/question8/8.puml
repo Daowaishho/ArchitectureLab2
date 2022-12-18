@@ -1,0 +1,39 @@
+@startuml
+
+interface  OASystemClassAdapt {
+    + Encryption() : void
+}
+
+class EncryptorClassAdaptor {
+    + Encryption() : void
+}
+
+class EncryptorClassAdaptee {
+    + Encryption() : void
+}
+
+EncryptorClassAdaptor -up-|> OASystemClassAdapt
+EncryptorClassAdaptor -up-|> EncryptorClassAdaptee
+
+
+class  OASystemObjectAdapt {
+    + Encryption() : void
+}
+
+class EncryptorObjectAdaptor {
+    - encryptorClassAdaptee : EncryptorClassAdaptee
+    + Encryption() : void
+}
+
+class EncryptorObjectAdaptee {
+    + Encryption() : void
+}
+
+EncryptorObjectAdaptor -up-|> OASystemObjectAdapt
+EncryptorObjectAdaptor *-up-|> EncryptorObjectAdaptee
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 14:34
+end note
+@enduml
