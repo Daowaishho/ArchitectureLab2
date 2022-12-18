@@ -1,0 +1,56 @@
+@startuml
+
+abstract class Image {
+    # filter : Filter
+    + setFilter(Filter filter): void
+    + {abstract} processImage() : void
+}
+
+class JPGImage {
+    + processImage() : void
+}
+
+class GIFImage {
+    + processImage() : void
+}
+
+class BMPImage {
+    + processImage() : void
+}
+
+interface Filter {
+    + doFilter() : void
+}
+
+class CutoutFilter {
+    + doFilter() : void
+}
+
+class BlurFilter {
+    + doFilter() : void
+}
+
+class SharpenFilter {
+    + doFilter() : void
+}
+
+class TextureFilter {
+    + doFilter() : void
+}
+
+JPGImage -up-|> Image
+GIFImage -up-|> Image
+BMPImage -up-|> Image
+
+CutoutFilter .up.|> Filter
+BlurFilter .up.|> Filter
+SharpenFilter .up.|> Filter
+TextureFilter .up.|> Filter
+
+Image o-right- Filter
+
+note as annotation
+  AUTHOR : ShuJie Huang
+  DATE : 2022.12.18 14:55
+end note
+@enduml
