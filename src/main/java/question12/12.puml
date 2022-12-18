@@ -1,0 +1,68 @@
+@startuml
+
+class Teacher {
+    + addComponent(Component sourceComponent, Component desComponent) : void
+    + createGroup(String groupName) : Group
+    + publishResources(Component component) : void
+    + deleteComponent(Component component) : void
+    + moveComponent(Component sourceComponent, Component desComponent) : void
+}
+
+abstract class Component {
+    - fatherComponent : Component
+    - name : String
+    + Component(String name)
+    + getName() : String
+    + setFatherComponent : void
+    + getFatherComponent : Component
+    + {abstract} publish() : void
+    + {abstract} add(Component component) : void
+    + {abstract} removeChild(Component component) : void
+    + {abstract} delete() : void
+    + {abstract} moveTo(Component component) : void
+    + {abstract} getChild(int i) : Component
+}
+
+abstract class Resources {
+    + Resources(String name)
+    + {abstract} publish() : void
+    + add(Component component) : void
+    + delete() : void
+    + moveTo(Component component) : void
+    + getChild(int i) : Component
+}
+
+class Video {
+    + publish() : void
+}
+
+class Powerpoint {
+    + publish() : void
+}
+
+class EBook {
+    + publish() : void
+}
+
+class Group {
+    + Group(String name)
+    - ComponentList : ArrayList<Component>
+    + publish() : void
+    + add(Component component) : void
+    + removeChild(Component component) : void
+    + delete() : void
+    + moveTo(Component component) : void
+    + getChild(int i) : Component
+}
+
+Video -up-|> Resources
+Powerpoint -up-|> Resources
+EBook -up-|> Resources
+
+Resources -up-|> Component
+Group -up-|> Component
+Resources o-- Component
+
+Teacher ..> Component
+
+@enduml
